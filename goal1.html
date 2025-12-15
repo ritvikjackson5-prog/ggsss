@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 1 – No Poverty</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto} .chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#e5243b">
+  <h1>SDG 1 – No Poverty</h1>
+  <p>End poverty in all its forms everywhere</p>
+</header>
+
+<nav>
+<a href="../index.html">Back to Home</a>
+  <a href="goal1.html">SDG 1</a>
+  <a href="goal2.html">SDG 2</a>
+</nav>
+
+<section>
+  <h2>About SDG 1</h2>
+  <p>SDG 1 aims to eradicate extreme poverty for all people everywhere by 2030. Key targets include reducing the number of people living in poverty and ensuring access to basic resources.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>End extreme poverty (people living on less than $1.25/day)</li>
+    <li>Implement social protection systems for all</li>
+    <li>Equal rights to economic resources and services</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg1Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 1 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg1Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Global Poverty Rate','Poverty in India','Social Protection Coverage'],
+    datasets:[{label:'Progress %', data:[55,58,40], backgroundColor:'#e5243b'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

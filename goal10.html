@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 10 – Reduced Inequalities</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto}.chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#dd1367">
+  <h1>SDG 10 – Reduced Inequalities</h1>
+  <p>Reduce inequality within and among countries</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal9.html">SDG 9</a>
+  <a href="goal10.html">SDG 10</a>
+  <a href="goal11.html">SDG 11</a>
+</nav>
+
+<section>
+  <h2>About SDG 10</h2>
+  <p>SDG 10 aims to reduce income and social inequalities by empowering marginalized groups and ensuring equal opportunities for all.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Reduce income inequalities within and among countries</li>
+    <li>Empower and promote social, economic and political inclusion</li>
+    <li>Ensure equal opportunity and reduce discrimination</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg10Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 10 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg10Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Income Equality Index','Social Inclusion','Discrimination Reduction'],
+    datasets:[{label:'Progress %', data:[60,55,50], backgroundColor:'#dd1367'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

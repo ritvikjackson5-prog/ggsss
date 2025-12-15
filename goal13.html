@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 13 – Climate Action</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto}.chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#3f7e44">
+  <h1>SDG 13 – Climate Action</h1>
+  <p>Take urgent action to combat climate change and its impacts</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal12.html">SDG 12</a>
+  <a href="goal13.html">SDG 13</a>
+  <a href="goal14.html">SDG 14</a>
+</nav>
+
+<section>
+  <h2>About SDG 13</h2>
+  <p>SDG 13 calls for urgent measures to reduce greenhouse gas emissions, build resilience, and integrate climate change measures into national policies.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Strengthen resilience and adaptive capacity to climate hazards</li>
+    <li>Integrate climate measures into policies and planning</li>
+    <li>Improve education and awareness on climate action</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg13Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 13 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg13Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Emission Reduction','Policy Integration','Awareness Programs'],
+    datasets:[{label:'Progress %', data:[48,55,60], backgroundColor:'#3f7e44'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

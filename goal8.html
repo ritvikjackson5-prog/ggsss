@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 8 – Decent Work</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto} .chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#a21942">
+  <h1>SDG 8 – Decent Work & Economic Growth</h1>
+  <p>Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal7.html">SDG 7</a>
+  <a href="goal8.html">SDG 8</a>
+  <a href="goal9.html">SDG 9</a>
+</nav>
+
+<section>
+  <h2>About SDG 8</h2>
+  <p>SDG 8 encourages policies for sustainable economic growth, decent job creation, entrepreneurship, and productivity improvements.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Promote sustainable economic growth and employment</li>
+    <li>Protect labor rights and promote safe working environments</li>
+    <li>Support youth employment and entrepreneurship</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg8Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 8 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg8Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['GDP Growth','Youth Employment','Labor Rights Index'],
+    datasets:[{label:'Progress %', data:[65,55,70], backgroundColor:'#a21942'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

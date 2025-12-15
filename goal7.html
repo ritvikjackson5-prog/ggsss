@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 7 – Affordable & Clean Energy</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto} .chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#fcc30b">
+  <h1>SDG 7 – Affordable & Clean Energy</h1>
+  <p>Ensure access to affordable, reliable, sustainable and modern energy for all</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal6.html">SDG 6</a>
+  <a href="goal7.html">SDG 7</a>
+  <a href="goal8.html">SDG 8</a>
+</nav>
+
+<section>
+  <h2>About SDG 7</h2>
+  <p>SDG 7 promotes universal access to modern energy services, increasing renewable energy share and energy efficiency.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Universal access to electricity and clean cooking</li>
+    <li>Increase the share of renewable energy in global energy mix</li>
+    <li>Improve energy efficiency across all sectors</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg7Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 7 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg7Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Electrification Rate','Renewable Energy Share','Energy Efficiency'],
+    datasets:[{label:'Progress %', data:[80,32,60], backgroundColor:'#fcc30b'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

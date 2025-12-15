@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 17 - Interactive Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root {
+    --sdg17: #19486a;
+    --green: #26bde2;
+    --dark: #043b2c;
+    --light: #f7fffb;
+  }
+  * { box-sizing: border-box; }
+
+  /* --- CHANGED BACKGROUND HERE --- */
+  body { 
+      margin: 0; 
+      font-family: 'Poppins', sans-serif; 
+      /* Same beautiful gradient for consistency */
+      background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); 
+      color: #222; 
+      min-height: 100vh;
+  }
+  /* --------------------------- */
+  
+  /* Header */
+  header { background: var(--sdg17); color: #fff; padding: 40px 20px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+  header h1 { margin: 0; font-size: 2.5rem; }
+  
+  /* Container */
+  .container { max-width: 800px; margin: 40px auto; padding: 20px; }
+  
+  /* Back Button */
+  .btn-back {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--sdg17);
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background: #fff; /* Changed to white to pop against gradient */
+    border-radius: 8px;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+  .btn-back:hover { background: #f0f0f0; transform: translateY(-2px); }
+
+  /* Input Form Area */
+  .input-group {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  
+  .input-wrapper { display: flex; flex-direction: column; flex: 1; }
+  label { font-size: 0.9rem; font-weight: 600; margin-bottom: 5px; color: var(--dark); }
+  input { padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: inherit; }
+  
+  button#addDataBtn {
+    padding: 12px 25px;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    height: 46px; 
+  }
+  button#addDataBtn:hover { background: #1bbf83; }
+
+  /* Chart Area */
+  .chart-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  /* Accessibility Helper Text */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); border: 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SDG Progress Tracker</h1>
+  <p>Interactive Data Entry & Visualization</p>
+</header>
+
+<div class="container">
+  <a href="index.html" class="btn-back">⬅ Back to Dashboard</a>
+
+  <div class="input-group">
+    <div class="input-wrapper">
+      <label for="yearInput">Year</label>
+      <input type="number" id="yearInput" placeholder="e.g. 2025" min="2000" max="2030">
+    </div>
+    <div class="input-wrapper">
+      <label for="scoreInput">Composite Score (0-100)</label>
+      <input type="number" id="scoreInput" placeholder="e.g. 72.5" min="0" max="100" step="0.1">
+    </div>
+    <button id="addDataBtn" aria-label="Add new data point to chart">Add Data</button>
+  </div>
+
+  <div class="chart-box">
+    <p id="chartDesc" class="sr-only">A line chart showing the progress of SDG Composite scores over time. You can add new data points using the form above.</p>
+    
+    <canvas id="myTrackerChart" aria-labelledby="chartDesc" role="img"></canvas>
+    
+    <div style="text-align:center; margin-top:15px;">
+        <button onclick="resetData()" style="color:red; background:none; border:none; text-decoration:underline; cursor:pointer;">Reset to Default Data</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 1. Setup default data
+  const defaultLabels = ['2016', '2018', '2020', '2022', '2024'];
+  const defaultData = [65.2, 66.5, 67.8, 68.9, 70.1];
+
+  // 2. Check LocalStorage for saved data (Data Persistence)
+  let storedLabels = JSON.parse(localStorage.getItem('sdgLabels'));
+  let storedData = JSON.parse(localStorage.getItem('sdgScores'));
+
+  if(!storedLabels) { storedLabels = defaultLabels; }
+  if(!storedData) { storedData = defaultData; }
+
+  // 3. Initialize Chart
+  const ctx = document.getElementById('myTrackerChart').getContext('2d');
+  const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: storedLabels,
+      datasets: [{
+        label: 'SDG Composite Score',
+        data: storedData,
+        borderColor: '#19486a',
+        backgroundColor: 'rgba(25, 72, 106, 0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 6,
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: { beginAtZero: false, min: 60, max: 100, title: {display:true, text:'Score'} },
+        x: { title: {display:true, text:'Year'} }
+      },
+      plugins: {
+        tooltip: {
+            callbacks: {
+                label: function(context) {
+                    return `Score: ${context.parsed.y}`;
+                }
+            }
+        }
+      }
+    }
+  });
+
+  // 4. Function to Add Data (Writable Feature)
+  const btn = document.getElementById('addDataBtn');
+  btn.addEventListener('click', () => {
+    const year = document.getElementById('yearInput').value;
+    const score = document.getElementById('scoreInput').value;
+
+    if(year && score) {
+      // Update Chart Arrays
+      myChart.data.labels.push(year);
+      myChart.data.datasets[0].data.push(parseFloat(score));
+      
+      // Sort data by year (optional, keeps chart clean)
+      const combined = myChart.data.labels.map((lbl, i) => ({ label: lbl, val: myChart.data.datasets[0].data[i] }));
+      combined.sort((a, b) => a.label - b.label);
+      myChart.data.labels = combined.map(c => c.label);
+      myChart.data.datasets[0].data = combined.map(c => c.val);
+
+      myChart.update();
+
+      // Save to LocalStorage
+      localStorage.setItem('sdgLabels', JSON.stringify(myChart.data.labels));
+      localStorage.setItem('sdgScores', JSON.stringify(myChart.data.datasets[0].data));
+
+      // Clear Inputs
+      document.getElementById('yearInput').value = '';
+      document.getElementById('scoreInput').value = '';
+    } else {
+      alert("Please enter both a Year and a Score.");
+    }
+  });
+
+  // 5. Reset Function
+  function resetData() {
+      if(confirm('Clear all custom data and return to defaults?')) {
+          localStorage.removeItem('sdgLabels');
+          localStorage.removeItem('sdgScores');
+          location.reload();
+      }
+  }
+</script>
+
+</body>
+</html>

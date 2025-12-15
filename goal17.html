@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 17 – Partnerships</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto}.chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#19486a">
+  <h1>SDG 17 – Partnerships for the Goals</h1>
+  <p>Strengthen the means of implementation and revitalize the global partnership for sustainable development</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal16.html">SDG 16</a>
+  <a href="goal17.html">SDG 17</a>
+</nav>
+
+<section>
+  <h2>About SDG 17</h2>
+  <p>SDG 17 emphasizes global partnerships, international cooperation, finance, trade, technology, and capacity building to achieve all other SDGs.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Mobilize financial resources for developing countries</li>
+    <li>Enhance technology sharing and capacity building</li>
+    <li>Promote multi-stakeholder partnerships</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg17Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 17 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg17Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Finance','Technology','Capacity Building','Trade','Policy Cooperation'],
+    datasets:[{label:'Progress %', data:[60,65,55,50,70], backgroundColor:'#19486a'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

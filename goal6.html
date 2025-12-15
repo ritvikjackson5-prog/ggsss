@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 6 – Clean Water</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto} .chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#26bde2">
+  <h1>SDG 6 – Clean Water</h1>
+  <p>Ensure availability and sustainable management of water and sanitation for all</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal5.html">SDG 5</a>
+  <a href="goal6.html">SDG 6</a>
+  <a href="goal7.html">SDG 7</a>
+</nav>
+
+<section>
+  <h2>About SDG 6</h2>
+  <p>SDG 6 focuses on providing safe drinking water, improving sanitation, and promoting sustainable water management worldwide.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Universal access to safe drinking water and sanitation</li>
+    <li>Improve water quality and reduce pollution</li>
+    <li>Increase water-use efficiency across all sectors</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg6Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 6 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg6Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Safe Drinking Water','Sanitation Access','Water Efficiency'],
+    datasets:[{label:'Progress %', data:[70,65,55], backgroundColor:'#26bde2'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

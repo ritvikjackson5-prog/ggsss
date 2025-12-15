@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 15 – Life on Land</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto}.chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#56c02b">
+  <h1>SDG 15 – Life on Land</h1>
+  <p>Protect, restore and promote sustainable use of terrestrial ecosystems, sustainably manage forests, combat desertification</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal14.html">SDG 14</a>
+  <a href="goal15.html">SDG 15</a>
+  <a href="goal16.html">SDG 16</a>
+</nav>
+
+<section>
+  <h2>About SDG 15</h2>
+  <p>SDG 15 focuses on protecting biodiversity, forests, combating desertification, and halting ecosystem degradation.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Conserve and restore forests and terrestrial ecosystems</li>
+    <li>Halt biodiversity loss and extinction</li>
+    <li>Combat desertification and land degradation</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg15Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 15 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg15Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Forest Coverage','Biodiversity Protection','Land Restoration'],
+    datasets:[{label:'Progress %', data:[58,55,60], backgroundColor:'#56c02b'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

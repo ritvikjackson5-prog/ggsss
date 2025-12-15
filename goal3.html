@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 3 – Good Health</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto} .chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#4c9f38">
+  <h1>SDG 3 – Good Health</h1>
+  <p>Ensure healthy lives and promote well-being for all at all ages</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal2.html">SDG 2</a>
+  <a href="goal3.html">SDG 3</a>
+  <a href="goal4.html">SDG 4</a>
+</nav>
+
+<section>
+  <h2>About SDG 3</h2>
+  <p>SDG 3 focuses on reducing mortality rates, combating diseases, and promoting mental and physical well-being globally.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Reduce maternal and child mortality</li>
+    <li>End epidemics of major communicable diseases</li>
+    <li>Ensure access to essential medicines and vaccines</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg3Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 3 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg3Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Global Life Expectancy','Maternal Mortality','Vaccination Coverage'],
+    datasets:[{label:'Progress %', data:[80,75,70], backgroundColor:'#4c9f38'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

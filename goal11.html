@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 11 – Sustainable Cities</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto}.chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#fd9d24">
+  <h1>SDG 11 – Sustainable Cities & Communities</h1>
+  <p>Make cities and human settlements inclusive, safe, resilient and sustainable</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal10.html">SDG 10</a>
+  <a href="goal11.html">SDG 11</a>
+  <a href="goal12.html">SDG 12</a>
+</nav>
+
+<section>
+  <h2>About SDG 11</h2>
+  <p>SDG 11 promotes safe, inclusive, and sustainable urbanization and human settlements, with focus on housing, transport, and disaster resilience.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Ensure access to adequate, safe and affordable housing</li>
+    <li>Develop sustainable transport systems</li>
+    <li>Reduce adverse environmental impact of cities</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg11Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 11 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg11Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Affordable Housing','Public Transport','Urban Sustainability'],
+    datasets:[{label:'Progress %', data:[65,70,60], backgroundColor:'#fd9d24'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

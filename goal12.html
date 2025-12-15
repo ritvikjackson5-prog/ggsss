@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 12 – Responsible Consumption</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto}.chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#bf8b2e">
+  <h1>SDG 12 – Responsible Consumption & Production</h1>
+  <p>Ensure sustainable consumption and production patterns</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal11.html">SDG 11</a>
+  <a href="goal12.html">SDG 12</a>
+  <a href="goal13.html">SDG 13</a>
+</nav>
+
+<section>
+  <h2>About SDG 12</h2>
+  <p>SDG 12 encourages sustainable management and efficient use of natural resources and reduction of waste generation.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Reduce waste generation through prevention, reduction, recycling and reuse</li>
+    <li>Promote sustainable practices in businesses and consumers</li>
+    <li>Support sustainable public procurement policies</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg12Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 12 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg12Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Waste Reduction','Sustainable Business','Resource Efficiency'],
+    datasets:[{label:'Progress %', data:[55,60,65], backgroundColor:'#bf8b2e'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

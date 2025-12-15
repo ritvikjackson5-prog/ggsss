@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 2 – Zero Hunger</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto} .chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#dda63a">
+  <h1>SDG 2 – Zero Hunger</h1>
+  <p>End hunger, achieve food security and improved nutrition, and promote sustainable agriculture</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal1.html">SDG 1</a>
+  <a href="goal2.html">SDG 2</a>
+  <a href="goal3.html">SDG 3</a>
+</nav>
+
+<section>
+  <h2>About SDG 2</h2>
+  <p>SDG 2 seeks to end hunger and ensure that all people, especially children, have access to sufficient and nutritious food all year round.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>End all forms of malnutrition</li>
+    <li>Ensure access to safe, nutritious, sufficient food</li>
+    <li>Support sustainable agriculture and rural development</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg2Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 2 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg2Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Global Hunger Rate','Child Malnutrition','Agricultural Productivity'],
+    datasets:[{label:'Progress %', data:[72,65,55], backgroundColor:'#dda63a'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

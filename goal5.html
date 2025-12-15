@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 5 – Gender Equality</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto} .chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#ff3a21">
+  <h1>SDG 5 – Gender Equality</h1>
+  <p>Achieve gender equality and empower all women and girls</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal4.html">SDG 4</a>
+  <a href="goal5.html">SDG 5</a>
+  <a href="goal6.html">SDG 6</a>
+</nav>
+
+<section>
+  <h2>About SDG 5</h2>
+  <p>SDG 5 focuses on ending discrimination, violence, and harmful practices against women and girls, ensuring equal participation in society.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Eliminate all forms of discrimination and violence</li>
+    <li>Ensure equal access to education, healthcare, and employment</li>
+    <li>Promote leadership and political participation for women</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg5Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 5 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg5Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Gender Parity Index','Women in Leadership','Violence Reduction'],
+    datasets:[{label:'Progress %', data:[68,45,50], backgroundColor:'#ff3a21'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

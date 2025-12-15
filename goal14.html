@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 14 – Life Below Water</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto}.chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#0a97d9">
+  <h1>SDG 14 – Life Below Water</h1>
+  <p>Conserve and sustainably use the oceans, seas and marine resources for sustainable development</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal13.html">SDG 13</a>
+  <a href="goal14.html">SDG 14</a>
+  <a href="goal15.html">SDG 15</a>
+</nav>
+
+<section>
+  <h2>About SDG 14</h2>
+  <p>SDG 14 focuses on reducing marine pollution, protecting marine ecosystems, and ensuring sustainable fisheries.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Prevent and reduce marine pollution</li>
+    <li>Protect marine ecosystems and biodiversity</li>
+    <li>Regulate sustainable fishing practices</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg14Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 14 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg14Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Pollution Reduction','Ecosystem Protection','Sustainable Fisheries'],
+    datasets:[{label:'Progress %', data:[50,60,55], backgroundColor:'#0a97d9'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>

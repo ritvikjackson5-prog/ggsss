@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 17 – Partnerships for the Goals</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-heat/dist/leaflet-heat.js"></script>
+<style>
+  :root {
+    --sdg1: #e5243b; --sdg2: #dda63a; --sdg3: #4c9f38; --sdg4: #c5192d; --sdg5: #ff3a21;
+    --sdg6: #26bde2; --sdg7: #fcc30b; --sdg8: #a21942; --sdg9: #fd6925; --sdg10: #dd1367;
+    --sdg11: #fd9d24; --sdg12: #bf8b2e; --sdg13: #3f7e44; --sdg14: #0a97d9; --sdg15: #56c02b;
+    --sdg16: #00689d; --sdg17: #19486a; --dark: #043b2c; --light: #f7fffb; --green: #26bde2;
+  }
+
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:'Poppins', sans-serif; background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); color:#222; min-height: 100vh; }
+
+  header { background:linear-gradient(135deg,var(--green),#1bbf83); color:#fff; padding:60px 20px; text-align:center; }
+  header h1 { font-size:3rem; margin:0; }
+  header p { max-width:800px; margin:15px auto 0; }
+
+  nav { position:sticky; top:0; z-index:10; background:var(--dark); display:flex; flex-wrap:wrap; justify-content:center; }
+  nav a { color:#fff; text-decoration:none; padding:14px 18px; font-weight:500; }
+  nav a:hover { background:rgba(255,255,255,.15); }
+
+  section { padding:60px 20px; max-width:1200px; margin:auto; }
+  section .hero > div, section#progress, section#video, section#data {
+      background: rgba(255, 255, 255, 0.7); padding: 30px; border-radius: 20px;
+  }
+
+  .hero { display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:center; }
+  .hero img { width:100%; border-radius:20px; }
+  @media(max-width:900px){.hero{grid-template-columns:1fr;}}
+
+  h2 { font-size:2.2rem; color:var(--dark); margin-bottom:20px; }
+
+  .sdg-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:20px; }
+  .sdg { background:#fff; border-radius:18px; padding:20px; box-shadow:0 10px 25px rgba(0,0,0,.08); transition:.3s; cursor:pointer; text-align:center; color:#000; text-decoration:none; font-weight:500; }
+  .sdg span { display:block; font-size:2rem; font-weight:700; color:var(--green); }
+  .sdg:hover { transform:translateY(-8px) scale(1.03); }
+
+  .sdg:nth-child(1){border-top:6px solid var(--sdg1);} .sdg:nth-child(2){border-top:6px solid var(--sdg2);}
+  .sdg:nth-child(3){border-top:6px solid var(--sdg3);} .sdg:nth-child(4){border-top:6px solid var(--sdg4);}
+  .sdg:nth-child(5){border-top:6px solid var(--sdg5);} .sdg:nth-child(6){border-top:6px solid var(--sdg6);}
+  .sdg:nth-child(7){border-top:6px solid var(--sdg7);} .sdg:nth-child(8){border-top:6px solid var(--sdg8);}
+  .sdg:nth-child(9){border-top:6px solid var(--sdg9);} .sdg:nth-child(10){border-top:6px solid var(--sdg10);}
+  .sdg:nth-child(11){border-top:6px solid var(--sdg11);} .sdg:nth-child(12){border-top:6px solid var(--sdg12);}
+  .sdg:nth-child(13){border-top:6px solid var(--sdg13);} .sdg:nth-child(14){border-top:6px solid var(--sdg14);}
+  .sdg:nth-child(15){border-top:6px solid var(--sdg15);} .sdg:nth-child(16){border-top:6px solid var(--sdg16);}
+  .sdg:nth-child(17){border-top:6px solid var(--sdg17);}
+
+  .progress-box { margin:15px 0; }
+  .progress { height:14px; background:#ddd; border-radius:10px; overflow:hidden; }
+  .progress div { height:100%; background:var(--green); }
+
+  .video-wrap { display:flex; justify-content:center; }
+  iframe { max-width:100%; border-radius:16px; }
+
+  .tracker-card { background: linear-gradient(135deg, #19486a, #26bde2); color: white; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+  .tracker-btn { background: white; color: #19486a; padding: 15px 30px; font-size: 1.1rem; font-weight: bold; text-decoration: none; border-radius: 50px; display: inline-block; margin-top: 20px; transition: 0.3s; }
+  .tracker-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+  footer { background:var(--dark); color:#fff; text-align:center; padding:30px 15px; }
+
+  .personal-info input { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.5); border-radius: 5px; padding: 5px 10px; color: #fff; font-family: 'Poppins', sans-serif; font-size: 1rem; }
+  .personal-info input:focus { outline: none; background: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<section id="cover" style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#19486a,#0b8457);color:#fff;text-align:center;padding:40px">
+  <div style="background:rgba(255,255,255,0.1);backdrop-filter:blur(6px);border-radius:24px;padding:40px;max-width:900px;width:100%">
+    <h1>UN Sustainable Development Goals</h1>
+    <h2>SDG 17 — Partnerships for the Goals</h2>
+    <p>A Multi‑Page Interactive Website with Maps, Charts & Official UN Branding</p>
+    <hr style="opacity:.3;margin:24px 0">
+    <div class="personal-info">
+      <p><b>Prepared by:</b> <input type="text" id="preparedBy" value="Your Name" placeholder="Enter your name"></p>
+      <p><b>Class / School:</b> <input type="text" id="classSchool" value="" placeholder="Enter class/school"></p>
+      <p><b>Academic Year:</b> <input type="text" id="academicYear" value="" placeholder="Enter academic year"></p>
+    </div>
+    <p style="margin-top:24px">Scroll to explore ⬇️</p>
+  </div>
+</section>
+
+<header>
+  <h1>SDG 17: Partnerships for the Goals</h1>
+  <p>Strong global partnerships are the foundation for achieving all 17 Sustainable Development Goals by 2030.</p>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#sdgs">17 SDGs</a>
+  <a href="#progress">Progress</a>
+  <a href="#video">Video</a>
+  <a href="#tracker-link">Tracker</a>
+  <a href="#data">Map</a>
+</nav>
+
+<section id="about">
+  <div class="hero">
+    <div>
+      <h2>Why SDG 17 Matters</h2>
+      <p>SDG 17 focuses on strengthening international cooperation, technology sharing, finance, and partnerships. Without collaboration between governments, businesses, and citizens, no SDG can be fully achieved.</p>
+      <p><b>Core areas:</b> Finance, Technology, Capacity Building, Trade, and Systemic Issues.</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Partnership">
+  </div>
+</section>
+
+<section id="sdgs">
+  <h2>The 17 Sustainable Development Goals</h2>
+  <div class="sdg-grid">
+    <a class="sdg" href="goals/goal1.html"><span>1</span>No Poverty</a>
+    <a class="sdg" href="goals/goal2.html"><span>2</span>Zero Hunger</a>
+    <a class="sdg" href="goals/goal3.html"><span>3</span>Good Health</a>
+    <a class="sdg" href="goals/goal4.html"><span>4</span>Quality Education</a>
+    <a class="sdg" href="goals/goal5.html"><span>5</span>Gender Equality</a>
+    <a class="sdg" href="goals/goal6.html"><span>6</span>Clean Water</a>
+    <a class="sdg" href="goals/goal7.html"><span>7</span>Clean Energy</a>
+    <a class="sdg" href="goals/goal8.html"><span>8</span>Decent Work</a>
+    <a class="sdg" href="goals/goal9.html"><span>9</span>Industry & Innovation</a>
+    <a class="sdg" href="goals/goal10.html"><span>10</span>Reduced Inequalities</a>
+    <a class="sdg" href="goals/goal11.html"><span>11</span>Sustainable Cities</a>
+    <a class="sdg" href="goals/goal12.html"><span>12</span>Responsible Consumption</a>
+    <a class="sdg" href="goals/goal13.html"><span>13</span>Climate Action</a>
+    <a class="sdg" href="goals/goal14.html"><span>14</span>Life Below Water</a>
+    <a class="sdg" href="goals/goal15.html"><span>15</span>Life on Land</a>
+    <a class="sdg" href="goals/goal16.html"><span>16</span>Peace & Justice</a>
+    <a class="sdg" href="goals/goal17.html"><span>17</span>Partnerships</a>
+  </div>
+</section>
+
+
+<section id="progress">
+  <h2>SDG Progress: India vs World</h2>
+  <p>Toggle between India and Global progress to compare SDG performance.</p>
+  <button onclick="showIndia()">India</button>
+  <button onclick="showWorld()">World</button>
+
+  <div class="progress-box">SDG 1 – No Poverty
+    <div class="progress"><div id="sdg1" style="width:55%"></div></div>
+  </div>
+  <div class="progress-box">SDG 4 – Quality Education
+    <div class="progress"><div id="sdg4" style="width:62%"></div></div>
+  </div>
+  <div class="progress-box">SDG 13 – Climate Action
+    <div class="progress"><div id="sdg13" style="width:48%"></div></div>
+  </div>
+  <div class="progress-box">SDG 17 – Partnerships
+    <div class="progress"><div id="sdg17" style="width:60%"></div></div>
+  </div>
+</section>
+
+<section id="video">
+  <h2>Learn About the SDGs</h2>
+  <div class="video-wrap">
+    <iframe width="700" height="394" src="https://www.youtube.com/embed/e2S9wf5oVT4" title="UN SDGs" allowfullscreen></iframe>
+  </div>
+</section>
+
+<section id="tracker-link">
+  <div class="tracker-card">
+    <h2>📊 Interactive SDG Tracker</h2>
+    <p>Access the writable dashboard to enter data and visualize global progress over time.</p>
+    <a href="tracker.html" class="tracker-btn">Open Tracker Dashboard</a>
+  </div>
+</section>
+
+<section id="data">
+  <h2>SDG World Heatmap (Clickable)</h2>
+  <p>Select a country to view SDG highlights or click on a marker on the map.</p>
+  <select id="countrySelect" onchange="focusCountry()">
+    <option value="">-- Select Country --</option>
+    <option value="india">India</option>
+    <option value="usa">United States</option>
+    <option value="uk">United Kingdom</option>
+    <option value="japan">Japan</option>
+    <option value="australia">Australia</option>
+  </select>
+  <div id="heatmap" style="height:450px;border-radius:20px;margin-top:15px"></div>
+</section>
+
+<footer>
+  <p>UN Sustainable Development Goals • SDG 17 Project Website</p>
+</footer>
+
+<script>
+  // Load/save personal info
+  window.onload = function() {
+    document.getElementById('preparedBy').value = localStorage.getItem('preparedBy') || 'Your Name';
+    document.getElementById('classSchool').value = localStorage.getItem('classSchool') || '';
+    document.getElementById('academicYear').value = localStorage.getItem('academicYear') || '';
+  };
+  ['preparedBy','classSchool','academicYear'].forEach(id=>{
+    document.getElementById(id).addEventListener('input', function(){ localStorage.setItem(id, this.value); });
+  });
+
+  // Progress toggle
+  function showIndia(){ sdg1.style.width='58%'; sdg4.style.width='65%'; sdg13.style.width='46%'; sdg17.style.width='63%'; }
+  function showWorld(){ sdg1.style.width='55%'; sdg4.style.width='62%'; sdg13.style.width='48%'; sdg17.style.width='60%'; }
+
+  // Leaflet Heatmap
+  const heatMap = L.map('heatmap').setView([20,0],2);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(heatMap);
+
+  const regions = {
+    india:{ lat:22.97, lng:78.65, name:'India', report: `
+      <h4>India SDG Report Summary</h4>
+      <p><strong>Overall Status:</strong> Needs accelerated action.</p>
+      <ul>
+        <li><strong>SDG 1 (Poverty):</strong> Significantly improved (score 60/100).</li>
+        <li><strong>SDG 4 (Education):</strong> Challenges in quality and access (score 65/100).</li>
+        <li><strong>SDG 13 (Climate Action):</strong> Target achieved in clean energy (score 70/100).</li>
+      </ul>
+    `},
+    usa:{ lat:40.7, lng:-74, name:'United States', report: `
+      <h4>USA SDG Report Summary</h4>
+      <p><strong>Overall Status:</strong> Challenges remain.</p>
+      <ul>
+        <li><strong>SDG 10 (Reduced Inequalities):</strong> Major challenges in income equality.</li>
+        <li><strong>SDG 12 (Responsible Consumption and Production):</strong> Significantly off-track due to high consumption.</li>
+      </ul>
+    `},
+    uk:{ lat:51.5, lng:-0.12, name:'United Kingdom', report: `
+      <h4>UK SDG Report Summary</h4>
+      <p><strong>Overall Status:</strong> Moderate progress.</p>
+      <ul>
+        <li><strong>SDG 4 (Education):</strong> Access to quality education improving.</li>
+        <li><strong>SDG 13 (Climate Action):</strong> Carbon reduction targets met partially.</li>
+      </ul>
+    `},
+    japan:{ lat:36.2, lng:138, name:'Japan', report: `
+      <h4>Japan SDG Report Summary</h4>
+      <p><strong>Overall Status:</strong> Strong progress.</p>
+      <ul>
+        <li><strong>SDG 9 (Industry & Innovation):</strong> High technological advancements.</li>
+        <li><strong>SDG 7 (Clean Energy):</strong> Renewable energy targets on track.</li>
+      </ul>
+    `},
+    australia:{ lat:-25.3, lng:133.8, name:'Australia', report: `
+      <h4>Australia SDG Report Summary</h4>
+      <p><strong>Overall Status:</strong> Steady progress.</p>
+      <ul>
+        <li><strong>SDG 14 (Life Below Water):</strong> Marine conservation efforts improving.</li>
+        <li><strong>SDG 15 (Life on Land):</strong> Deforestation reduced.</li>
+      </ul>
+    `}
+  };
+
+  // Add markers with popups
+  Object.values(regions).forEach(r=>{
+    L.marker([r.lat,r.lng]).addTo(heatMap).bindPopup(r.report);
+  });
+
+  function focusCountry(){
+    const country = document.getElementById('countrySelect').value;
+    if(country && regions[country]){
+      heatMap.setView([regions[country].lat, regions[country].lng],5);
+      L.popup()
+       .setLatLng([regions[country].lat, regions[country].lng])
+       .setContent(regions[country].report)
+       .openOn(heatMap);
+    }
+  }
+</script>
+<script src="js/sdg-ai.js"></script>
+<script src='https://cdn.jotfor.ms/agent/embedjs/019b1d57e71f7c8f99ac0f95ad6f46d0c62a/embed.js'>
+</script>
+</body>
+</html>

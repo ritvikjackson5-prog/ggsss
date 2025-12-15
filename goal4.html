@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDG 4 – Quality Education</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:'Poppins',sans-serif;margin:0} header,footer{color:#fff;text-align:center;padding:40px} nav{background:#043b2c;padding:10px;text-align:center} nav a{color:#fff;margin:0 10px;text-decoration:none} section{padding:40px;max-width:1000px;margin:auto} .chart-container{max-width:600px;margin:auto}
+</style>
+</head>
+<body>
+
+<header style="background:#c5192d">
+  <h1>SDG 4 – Quality Education</h1>
+  <p>Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all</p>
+</header>
+
+<nav>
+  <a href="../index.html">Home</a>
+  <a href="goal3.html">SDG 3</a>
+  <a href="goal4.html">SDG 4</a>
+  <a href="goal5.html">SDG 5</a>
+</nav>
+
+<section>
+  <h2>About SDG 4</h2>
+  <p>SDG 4 aims to ensure that all children and adults have access to quality education, literacy, and lifelong learning opportunities.</p>
+  
+  <h3>Key Targets</h3>
+  <ul>
+    <li>Free primary and secondary education for all</li>
+    <li>Increase literacy rates among youth and adults</li>
+    <li>Equal access to vocational and higher education</li>
+  </ul>
+  
+  <h3>Progress Chart</h3>
+  <div class="chart-container">
+    <canvas id="sdg4Chart"></canvas>
+  </div>
+</section>
+
+<footer style="background:#043b2c">
+  <p>UN SDG • SDG 4 Project Page</p>
+</footer>
+
+<script>
+const ctx = document.getElementById('sdg4Chart');
+new Chart(ctx,{
+  type:'bar',
+  data:{
+    labels:['Literacy Rate','School Enrollment','Education Quality Index'],
+    datasets:[{label:'Progress %', data:[86,78,70], backgroundColor:'#c5192d'}]
+  },
+  options:{responsive:true,plugins:{legend:{display:false}}}
+});
+</script>
+
+</body>
+</html>
